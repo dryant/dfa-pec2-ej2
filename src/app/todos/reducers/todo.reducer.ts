@@ -1,8 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import {
+  completeAllTodoTasks,
   completeTodo,
   createTodo,
+  deleteCompletedTodos,
   deleteTodo,
   editTodo,
   getAllTodos,
@@ -99,6 +101,21 @@ const _todoReducer = createReducer(
       status: payload.status,
       message: payload.message,
     },
+  })),
+  on(completeAllTodoTasks, (state) => ({
+    ...state,
+    loading: false,
+    loaded: false,
+    todos: state.todos.map((todo) => ({
+      ...todo,
+      done: true,
+    })),
+  })),
+  on(deleteCompletedTodos, (state) => ({
+    ...state,
+    loading: false,
+    loaded: false,
+    todos: state.todos.filter((todo) => !todo.done),
   }))
 );
 export function todoReducer(state: any, action: any) {

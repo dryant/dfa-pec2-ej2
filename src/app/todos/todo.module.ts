@@ -5,10 +5,21 @@ import { TodoListItemComponent } from './todo-list-item/todo-list-item.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { TodoAddComponent } from './todo-add/todo-add.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TodoCompleteComponent } from './todo-complete/todo-complete.component';
 
 @NgModule({
-  declarations: [TodoListComponent, TodoListItemComponent, TodoAddComponent],
+  declarations: [
+    TodoListComponent,
+    TodoListItemComponent,
+    TodoAddComponent,
+    TodoCompleteComponent,
+  ],
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
-  exports: [TodoListItemComponent, TodoListComponent, TodoAddComponent],
+  exports: [
+    TodoListItemComponent,
+    TodoListComponent,
+    TodoAddComponent,
+    TodoCompleteComponent,
+  ],
 })
 export class TodoModule {}
