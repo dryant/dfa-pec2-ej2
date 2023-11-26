@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Todo } from './models/todo.model';
-import { completeTodo, createTodo, editTodo } from './todo.actions';
+import { completeTodo, createTodo, deleteTodo, editTodo } from './todo.actions';
+import { state } from '@angular/animations';
 
 export const initialState: Todo[] = ([] = [new Todo('Terminar practica 2')]);
 
@@ -30,6 +31,10 @@ const _todoReducer = createReducer(
         return todo;
       }
     });
+  }),
+
+  on(deleteTodo, (state, { id }) => {
+    return state.filter((todo) => todo.id !== id);
   })
 );
 export function todoReducer(state: any, action: any) {
