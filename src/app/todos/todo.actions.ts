@@ -9,3 +9,8 @@ export const completeTodo = createAction(
   '[TODO] Complete todo',
   props<{ id: number }>()
 );
+
+export const editTodo = createAction(
+  '[TODO] Edit todo',
+  props<{ id: number; title: string }>()
+);

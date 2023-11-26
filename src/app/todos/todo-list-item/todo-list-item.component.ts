@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Todo } from '../models/todo.model';
 import { FormControl, Validators } from '@angular/forms';
-import { completeTodo } from '../todo.actions';
+import { completeTodo, editTodo } from '../todo.actions';
 import { AppState } from 'src/app/app.reducer';
 import { Store } from '@ngrx/store';
 
@@ -29,11 +29,18 @@ export class TodoListItemComponent implements OnInit {
 
   editTask(): void {
     this.isEditing = true;
+    this.titleInput.setValue(this.todo.title);
   }
 
   deleteTask(): void {}
 
   submitTask() {
     this.isEditing = false;
+
+    if (!this.titleInput.invalid && this.titleInput.value !== this.todo.title) {
+      this.store.dispatch(
+        editTodo({ id: this.todo.id, title: this.titleInput.value })
+      );
+    }
   }
 }
